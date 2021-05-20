@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Checkerboard</title>
+    <style>
+        .square_one{
+            background-color: {{color_one}};
+        }
+        .square_two{
+            background-color: {{color_two}};
+        }
+    </style>
+</head>
+<body>
+    <h1>Checkerboard</h1>
+    <center class="wrapper">
+        {%for i in range(0, height)%}
+            {%if i %2 == 0%}
+                <div>
+                    {%for x in range(0,width)%}
+                        {%if x % 2 == 0%}
+                        <div class = "square_one"></div>
+                        {%else%}
+                        <div class="square_two"></div>
+                        {%endif%}
+                    {%endfor%}
+                </div>
+            {%else%}
+                <div>
+                    {%for x in range(0,width)%}
+                        {%if x % 2 == 0%}
+                            <div class="square_two"></div>
+                        {%else%}
+                            <div class = "square_one"></div>
+                        {%endif%}
+                    {%endfor%}
+                </div>
+            {%endif%}
+        {%endfor%}
+    </center>
+</body>
+</html>
+
