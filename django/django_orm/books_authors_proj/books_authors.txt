@@ -1,0 +1,163 @@
+(djangoORM) C:\Users\Aaron\ContinuingEducation\LearningPlatform\python_django\django\django_orm\books_authors_proj>python manage.py shell
+Python 3.6.4 (v3.6.4:d48eceb, Dec 19 2017, 06:54:40) [MSC v.1900 64 bit (AMD64)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.16.1 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: Book.objects.create(title = "C Sharp", description = "a book about computer language")
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-1-d359737dbf4d> in <module>
+----> 1 Book.objects.create(title = "C Sharp", description = "a book about computer language")
+
+NameError: name 'Book' is not defined
+
+In [2]: from books_authors_app import *
+
+In [3]: Book.objects.create(title = "C Sharp", description = "a book about computer language")
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-3-d359737dbf4d> in <module>
+----> 1 Book.objects.create(title = "C Sharp", description = "a book about computer language")
+
+NameError: name 'Book' is not defined
+
+In [4]: from books_authors_app.models import *
+
+In [5]: Book.objects.create(title = "C Sharp", description = "a book about computer language")
+Out[5]: <Book: Book object (1)>
+
+In [6]: Book.objects.create(title = "Java", description = "a book about computer language")
+Out[6]: <Book: Book object (2)>
+
+In [7]: Book.objects.create(title = "Python", description = "a book about computer language")
+Out[7]: <Book: Book object (3)>
+
+In [8]: Book.objects.create(title = "PHP", description = "a book about computer language")
+Out[8]: <Book: Book object (4)>
+
+In [9]: Book.objects.create(title = "Ruby", description = "a book about computer language")
+Out[9]: <Book: Book object (5)>
+
+In [10]: Author.objects.create(first_name = "Jane", last_name = "Austin")
+Out[10]: <Author: Author object (1)>
+
+In [11]: Author.objects.create(first_name = "Emily", last_name = "Dickinson")
+Out[11]: <Author: Author object (2)>
+
+In [12]: Author.objects.create(first_name = "Fyodor", last_name = "Dostoevsky")
+Out[12]: <Author: Author object (3)>
+
+In [13]: Author.objects.create(first_name = "William", last_name = "Shakespeare")
+Out[13]: <Author: Author object (4)>
+
+In [14]: Author.objects.create(first_name = "Lao", last_name = "Tzu")
+Out[14]: <Author: Author object (5)>
+
+In [15]: exit
+
+(djangoORM) C:\Users\Aaron\ContinuingEducation\LearningPlatform\python_django\django\django_orm\books_authors_proj>python manage.py makemigrations
+Migrations for 'books_authors_app':
+  books_authors_app\migrations\0002_author_notes.py
+    - Add field notes to author
+
+(djangoORM) C:\Users\Aaron\ContinuingEducation\LearningPlatform\python_django\django\django_orm\books_authors_proj>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, books_authors_app, contenttypes, sessions
+Running migrations:
+  Applying books_authors_app.0002_author_notes... OK
+
+(djangoORM) C:\Users\Aaron\ContinuingEducation\LearningPlatform\python_django\django\django_orm\books_authors_proj>python manage.py shell
+Python 3.6.4 (v3.6.4:d48eceb, Dec 19 2017, 06:54:40) [MSC v.1900 64 bit (AMD64)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.16.1 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: x = Book.objects.get(id = 1)
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-1-e40e3317c33e> in <module>
+----> 1 x = Book.objects.get(id = 1)
+
+NameError: name 'Book' is not defined
+
+In [2]: from books_authors_app.models import *
+
+In [3]: x = Book.objects.get(id = 1)
+
+In [4]: x.title = "C#"
+
+In [5]: x.save()
+
+In [6]: x = Author.objects.get(id = 4)
+
+In [7]: x.first_name = "Bill"
+
+In [8]: x.save()
+
+In [9]: Book.objects.get(id=1).add(Author.objects.get(id=1))
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-9-f5b6f7b1d304> in <module>
+----> 1 Book.objects.get(id=1).add(Author.objects.get(id=1))
+
+AttributeError: 'Book' object has no attribute 'add'
+
+In [10]: book1 = Book.objects.get(id=1)
+
+In [11]: book2 = Book.objects.get(id=2)
+
+In [12]: book1.add(Author.objects.get(id=1))
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-12-5055c45d200e> in <module>
+----> 1 book1.add(Author.objects.get(id=1))
+
+AttributeError: 'Book' object has no attribute 'add'
+
+In [13]: book1.authors.add(Author.objects.get(id=1))
+
+In [14]: book2.authors.add(Author.objects.get(id=1))
+
+In [15]: Book.objects.get(id=1).authors.add(Author.objects.get(id=2))
+
+In [16]: Book.objects.get(id=2).authors.add(Author.objects.get(id=2))
+
+In [17]: Book.objects.get(id=3).authors.add(Author.objects.get(id=2))
+
+In [18]: Book.objects.get(id=1).authors.add(Author.objects.get(id=3))
+
+In [19]: Book.objects.get(id=2).authors.add(Author.objects.get(id=3))
+
+In [20]: Book.objects.get(id=3).authors.add(Author.objects.get(id=3))
+
+In [21]: Book.objects.get(id=4).authors.add(Author.objects.get(id=3))
+
+In [22]: Book.objects.get(id=1).authors.add(Author.objects.get(id=4))
+
+In [23]: Book.objects.get(id=2).authors.add(Author.objects.get(id=4))
+
+In [24]: Book.objects.get(id=3).authors.add(Author.objects.get(id=4))
+
+In [25]: Book.objects.get(id=4).authors.add(Author.objects.get(id=4))
+
+In [26]: Book.objects.get(id=5).authors.add(Author.objects.get(id=4))
+
+In [27]: Book.objects.get(id=3).authhors.all()
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-27-d3805c5fba27> in <module>
+----> 1 Book.objects.get(id=3).authhors.all()
+
+AttributeError: 'Book' object has no attribute 'authhors'
+
+In [28]: Book.objects.get(id=3).authors.all()
+Out[28]: <QuerySet [<Author: Author object (2)>, <Author: Author object (3)>, <Author: Author object (4)>]>
+
+In [29]: Book.objects.get(id=3).authors.remove(Author.objects.get(id=1))
+
+In [30]: Book.objects.get(id=2).authors.add(Author.objects.get(id=5))
+
+In [31]: Author.objects.get(id=3).books.all()
+Out[31]: <QuerySet [<Book: Book object (1)>, <Book: Book object (2)>, <Book: Book object (3)>, <Book: Book object (4)>]>
+
+In [32]: Book.objects.get(id=5).authors.all()
+Out[32]: <QuerySet [<Author: Author object (4)>]>

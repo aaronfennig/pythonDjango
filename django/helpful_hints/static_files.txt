@@ -1,0 +1,34 @@
+Static Files
+Objectives:
+Organize static files properly within a Django project
+Learn the syntax for referencing static content in templates
+The organization and behavior of static files is very similar to templates. Within each app, at the same level as our templates folder, we also need a folder called static. Then within that folder, we can save all of our static content (and further subdivide into js, css, and images folders as desired).
+
+In our templates, when we want to reference our static files, we'll first need to add a line indicating we want to use our static files:
+
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title>Index</title>
+      {% load static %}		<!-- added this line -->
+
+Then we can reference any static files relative to their location within the folder called static:
+
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title>Index</title>
+      {% load static %}
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">    
+      <script src="{% static 'js/script.js' %}"></script>
+    </head>
+    <body>
+    	<img src="{% static 'images/image.jpg' %}" />
+    </body>
+
+
+
+References
+https://docs.djangoproject.com/en/2.2/howto/static-files/

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojos and Ninjas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" integrity="undefined" crossorigin="anonymous">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>Dojos and Ninjas</h1>
+    <div class="forms">
+        <div class="form">
+            <h1>Add a Dojo</h1>
+            <form action="/post_dojo" method = "POST">
+                {%csrf_token%}
+                <label for="name">Name: </label>
+                <input type="text" name = "name">
+                <label for="city">City: </label>
+                <input type="text" name = "city">
+                <label for="state">State: </label>
+                <input type="text" name = "state">
+                <input type="submit">
+            </form>
+        </div>
+        <div class="form">
+            <h1>Add a Ninja</h1>
+            <form action="/post_ninja" method = "POST">
+                {%csrf_token%}
+                <label for="first_name">First Name: </label>
+                <input type="text" name = "first_name">
+                <label for="last_name">Last Name: </label>
+                <input type="text" name = "last_name">
+                <label for="dojo">Dojo: </label>
+                <select name="dojo">
+                    <option value= "2">Burbank</option>
+                    <option value= "3">Chicago</option>
+                    <option value= "4">San Jose</option>
+                    <option value= "5">Ptown</option>
+                    <option value= "6">Karate</option>
+                </select>
+                <input type="submit">
+            </form>
+        </div>
+    </div>
+    <hr>
+    <h1>All the Dojos</h1>
+    <ul>
+        {% for dojo in dojos %}
+        <li>
+            {{dojo.name}}
+            ({{dojo.students.count}} Ninja(s))
+            <form action="/delete_dojo" method = "POST">
+                {%csrf_token%}
+                <input type="hidden" name="id" value = {{dojo.id}}>
+                <input type="submit" value="Delete Dojo">
+            </form>
+            <ul>
+                {% for ninja in dojo.students.all %}
+                <li>
+                    {{ninja.first_name}} {{ninja.last_name}}
+                    <form action="/delete_ninja" method = "POST">
+                        {%csrf_token%}
+                        <input type="hidden" name="id" value = {{ninja.id}}>
+                        <input type="submit" value="Delete Ninja">
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winner</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="wrapper">
+        <h1 class="right">YOU WIN!!!</h1>
+        <h1>{{session["userGuess"]}}</h1>
+        <h3>Would you like to enter your score on the leaderboard?</h3>
+        <form action="/leaderboardPost" method = "POST">
+            <label for="name">Your Name</label>
+            <input type="text" name="name" id="name">
+            <input type="submit">
+        </form>
+        <br>
+        <button onclick="location.href = '/reset'" type = "button">PLAY AGAIN?</button>
+    </div>
+</body>
+</html>

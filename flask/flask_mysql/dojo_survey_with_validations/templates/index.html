@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojo Survey</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+</head>
+
+<body>
+    <h2>Create A User</h2>
+    <form action = "/submitInfo" method = "POST">
+        <div class="form-group">
+            <label for="fullName">Your Name</label>
+            <input type="text" class="form-control" id="fullName" name = "fullName">
+        </div>
+        <div class="form-group">
+            <label for="dojoLocation">Email</label>
+            <select name = "dojoLocation" class="form-control" id="dojoLocation">
+                <option value="---------">----------</option>
+                <option value="SanJose">San Jose</option>
+                <option value="Burbank">Burbank</option>
+                <option value="Chicago">Chicago</option>
+                <option value="Dallas">Dallas</option>
+                <option value="Bellvue">Bellvue</option>
+            </select>
+            <label for="favoriteLanguage">Favorite Language</label>
+            <select name="favoriteLanguage" id="favoriteLanguage" class = "form-control">
+                <option value="---------">----------</option>
+                <option value="c#">C#</option>
+                <option value="javascript">JavaScript</option>
+                <option value="python">Python</option>
+                <option value="java">Java</option>
+            </select>
+            <input type="submit">
+        </div>
+    </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}                      
+            {% for message in messages %}
+                <p>{{message}}</p>                   
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</body>
+
+</html>

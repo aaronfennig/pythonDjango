@@ -1,0 +1,47 @@
+*{
+    /* outline: 1px dotted pink; */
+    background-color: aquamarine;
+}
+
+.wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: aquamarine;
+}
+.log_reg{
+    text-align: center;
+    border: 3px solid black;
+    padding: 25px;
+    margin: 20px;
+    width: 40%;
+    height: auto;
+}
+.header{
+    width: 100%;
+}
+.dashWrap{
+    display: flex;
+    flex-direction: row;
+    /* margin: 25px; */
+    justify-content: space-around;
+    background-color: aquamarine;
+
+}
+.messages{
+    margin-left: 60px;
+    width:45%
+}
+.sendMessages{
+    width: 45%;
+}
+.aMessage{
+    display: flex;
+    justify-content: center;
+}
+.headers{
+    text-justify: center;
+    color:blue;
+    align-content: center;
+    margin: 25px;
+}

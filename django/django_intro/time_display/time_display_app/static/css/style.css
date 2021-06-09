@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+.wrapper{
+    margin:30px auto;
+    width: 970px;
+    background-color: burlywood;
+    min-height: 400px;
+    padding: 30px;
+}
+h1{
+    background-color:aquamarine;
+    color: red;
+    text-align: center;
+    border: 3px solid black;
+}
+.date-time{
+    background-color:aquamarine;
+    border: 3px solid black;
+    margin-top: 60px;
+    text-align: center;
+    font-size: 60px;
+}

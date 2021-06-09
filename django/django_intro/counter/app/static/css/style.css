@@ -1,0 +1,9 @@
+h1{
+    text-align: center;
+    color: red;
+}
+.wrapper{
+    margin: 20px auto;
+    color: green;
+    text-align: center;
+}

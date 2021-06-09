@@ -1,0 +1,7 @@
+{%if result[0] == None or result|length == session["numUsers"]%}
+    <p class = "error">"No Current Matches"</p>
+{%else%}
+    {%for each in result%}
+        <p class = "success">{{each["name"]}}</p>
+    {%endfor%}
+{%endif%}

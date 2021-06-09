@@ -1,0 +1,51 @@
+MAKE A VIRTUAL ENVIRONMENT
+
+We need a place to store these environments. Remember the my_environments folder we created in the first assignment? Let's store our environments there. In the terminal, navigate (cd) to the my_environments directory. Next, decide on a name for your environment (it can be whatever you'd like). In this example, we're naming our environment py3Env. Here's the command to create the virtual environment with that name:
+
+------------------------------------------------------------------
+| Mac/Linux: | python3 -m venv py3Env                     
+-------------+----------------------------------------------------
+| Windows:   | python -m venv py3Env               
+------------------------------------------------------------------
+
+Activating a Virtual Environment
+The keyword for activating a virtual environment is source or call, depending on which OS and terminal we're using. We run this command and specify which environment to activate like so (the following assumes we are in the my_environments directory, with a virtual environment called py3Env):
+
+------------------------------------------------------------------
+| Mac/Linux: | source py3Env/bin/activate                         
+------------------------------------------------------------------
+| Windows command prompt : | call py3Env\Scripts\activate       
+------------------------------------------------------------------
+| Windows git bash : | source py3Env/Scripts/activate         
+------------------------------------------------------------------
+
+We know our virtual environment is active, and which virtual environment is active, when the command line changes to something like this:
+
+(py3Env) $
+
+To deactivate a virtual environment, just type deactivate in the command line. Closing your terminal window will also deactivate your virtual environment.
+
+######TO CHECK WHAT IS INSTALLED IN THE VIRTUAL ENVIRONMENT##############################
+
+pipenv graph
+
+-----------------INSTALL COMMANDS (INSIDE VIRTUAL ENVIRONMENT)
+
+(py3Env) $ pip install Flask
+
+(py3Env) $ pip install PyMySQL
+
+(py3Env) $ pip install flask-bcrypt
+
+
+----------------------GOOD EXAMPLE OF A PYTHON/FLASK SERVER.PY HEAD WITH REGEX, PYMYSQL, BCRYPT AND SESSION SET UP------------------------------
+
+from flask import Flask, render_template, request, redirect, flash, session
+from mysqlconnection import connectToMySQL
+from flask_bcrypt import Bcrypt
+import re
+
+app = Flask(__name__)
+app.secret_key = "keep it secret"
+bcrypt = Bcrypt(app)
+EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')

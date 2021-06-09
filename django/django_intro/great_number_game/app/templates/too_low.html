@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Too Low</title>
+    {%load static%}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="low-wrapper">
+        <h1>Too low. Guess Again.</h1>
+        <form action="/guess" method = "POST">
+            {%csrf_token%}
+            <input type="number" name="userGuess">
+            <input type="submit">
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Lose</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="lose">
+        <h1>Too many attempts</h1>
+        <h2>Sorry, you have lost this round</h2>
+        <button onclick="location.href = '/reset'" type = "button">PLAY AGAIN?</button>
+    </div>
+</body>
+</html>

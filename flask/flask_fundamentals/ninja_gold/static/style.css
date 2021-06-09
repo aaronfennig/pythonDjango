@@ -1,0 +1,46 @@
+.wrapper{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: pink;
+    height: auto;
+}
+.showGold{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+}
+.activity{
+    width: 250px;
+    height: 250px;
+    border: 2px solid black;
+    background-color: bisque;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+.actInfo{
+    width:100%;
+    justify-content: center;
+}
+.activityLog{
+    border: 2px solid gold;
+    padding: 20px;
+    margin:40px;
+    width: 100%;
+}
+.endGame{
+    margin: 0, auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: pink;
+    text-align: center;
+    height: auto;
+    padding: 30px;
+}

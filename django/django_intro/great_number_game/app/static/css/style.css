@@ -1,0 +1,15 @@
+.wrapper{
+    text-align: center;
+}
+.high-wrapper{
+    text-align: center;
+    color: orange;
+}
+.low-wrapper{
+    text-align: center;
+    color: blue;
+}
+.win-wrapper{
+    text-align: center;
+    color: green;
+}

@@ -1,0 +1,422 @@
+
+(dojos_and_ninjas-aGlk5c-f) C:\Users\Aaron\ContinuingEducation\LearningPlatform\python_django\django\django_orm\dojos_and_ninjas\dojo_ninjas_proj>pipenv install ipython
+Installing ipython...
+Adding ipython to Pipfile's [packages]...
+Installation Succeeded
+Pipfile.lock (eda95d) out of date, updating to (7dab97)...
+Locking [dev-packages] dependencies...
+Locking [packages] dependencies...
+           Building requirements...
+Resolving dependencies...
+Success!
+Updated Pipfile.lock (7dab97)!
+Installing dependencies from Pipfile.lock (7dab97)...
+  ================================ 0/0 - 00:00:00
+
+(dojos_and_ninjas-aGlk5c-f) C:\Users\Aaron\ContinuingEducation\LearningPlatform\python_django\django\django_orm\dojos_and_ninjas\dojo_ninjas_proj>python manage.py shell
+Python 3.6.4 (v3.6.4:d48eceb, Dec 19 2017, 06:54:40) [MSC v.1900 64 bit (AMD64)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.16.1 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: from models.Dojo import *
+---------------------------------------------------------------------------
+ModuleNotFoundError                       Traceback (most recent call last)
+<ipython-input-1-7abdfb5edca0> in <module>
+----> 1 from models.Dojo import *
+
+ModuleNotFoundError: No module named 'models'
+
+In [2]: from dojo_ninjas_app.models import *
+
+In [3]: Dojo.objects.create(name = "San Jose", city = "SanJose", state = "TX" )
+Out[3]: <Dojo: Dojo object (1)>
+
+In [4]: Dojo.objects.create(name = "Burbank", city = "Los Angeles", state = "CA" )
+Out[4]: <Dojo: Dojo object (2)>
+
+In [5]: Dojo.objects.create(name = "Chicago", city = "Chicago", state = "IL" )
+Out[5]: <Dojo: Dojo object (3)>
+
+In [6]: all_dojos = Dojo.objects.all()
+
+In [7]: for each in all_dojos:
+   ...:     print(each.__dict__)
+   ...:
+{'_state': <django.db.models.base.ModelState object at 0x0000020F3A9434E0>, 'id': 1, 'name': 'San Jose', 'city': 'SanJose', 'state': 'TX'}
+{'_state': <django.db.models.base.ModelState object at 0x0000020F3A943400>, 'id': 2, 'name': 'Burbank', 'city': 'Los Angeles', 'state': 'CA'}
+{'_state': <django.db.models.base.ModelState object at 0x0000020F3A943860>, 'id': 3, 'name': 'Chicago', 'city': 'Chicago', 'state': 'IL'}
+
+In [8]: dojo.objects.get(id=1).delete()
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-8-6d727fbd0717> in <module>
+----> 1 dojo.objects.get(id=1).delete()
+
+NameError: name 'dojo' is not defined
+
+In [9]: Dojo.objects.get(id=1).delete()
+Out[9]: (1, {'dojo_ninjas_app.Ninja': 0, 'dojo_ninjas_app.Dojo': 1})
+
+In [10]: Dojo.objects.create(name = "San Jose", city = "SanJose", state = "TX" )
+Out[10]: <Dojo: Dojo object (4)>
+
+In [11]: Dojo.objects.create(dojo = 2, first_name = "Aaron", last_name = "Fennig")
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-11-3eeba628f994> in <module>
+----> 1 Dojo.objects.create(dojo = 2, first_name = "Aaron", last_name = "Fennig")
+
+~\.virtualenvs\dojos_and_ninjas-aGlk5c-f\lib\site-packages\django\db\models\manager.py in manager_method(self, *args, **kwargs)
+     80         def create_method(name, method):
+     81             def manager_method(self, *args, **kwargs):
+---> 82                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     83             manager_method.__name__ = method.__name__
+     84             manager_method.__doc__ = method.__doc__
+
+~\.virtualenvs\dojos_and_ninjas-aGlk5c-f\lib\site-packages\django\db\models\query.py in create(self, **kwargs)
+    418         and returning the created object.
+    419         """
+--> 420         obj = self.model(**kwargs)
+    421         self._for_write = True
+    422         obj.save(force_insert=True, using=self.db)
+
+~\.virtualenvs\dojos_and_ninjas-aGlk5c-f\lib\site-packages\django\db\models\base.py in __init__(self, *args, **kwargs)
+    499                     pass
+    500             for kwarg in kwargs:
+--> 501                 raise TypeError("%s() got an unexpected keyword argument '%s'" % (cls.__name__, kwarg))
+    502         super().__init__()
+    503         post_init.send(sender=cls, instance=self)
+
+TypeError: Dojo() got an unexpected keyword argument 'dojo'
+
+In [12]: Dojo.objects.create(first_name = "Aaron", last_name = "Fennig", dojo = Dojo.objects.get(id = 2
+    ...: ))
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-12-e0e9ef4724c7> in <module>
+----> 1 Dojo.objects.create(first_name = "Aaron", last_name = "Fennig", dojo = Dojo.objects.get(id = 2))
+
+~\.virtualenvs\dojos_and_ninjas-aGlk5c-f\lib\site-packages\django\db\models\manager.py in manager_method(self, *args, **kwargs)
+     80         def create_method(name, method):
+     81             def manager_method(self, *args, **kwargs):
+---> 82                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     83             manager_method.__name__ = method.__name__
+     84             manager_method.__doc__ = method.__doc__
+
+~\.virtualenvs\dojos_and_ninjas-aGlk5c-f\lib\site-packages\django\db\models\query.py in create(self, **kwargs)
+    418         and returning the created object.
+    419         """
+--> 420         obj = self.model(**kwargs)
+    421         self._for_write = True
+    422         obj.save(force_insert=True, using=self.db)
+
+~\.virtualenvs\dojos_and_ninjas-aGlk5c-f\lib\site-packages\django\db\models\base.py in __init__(self, *args, **kwargs)
+    499                     pass
+    500             for kwarg in kwargs:
+--> 501                 raise TypeError("%s() got an unexpected keyword argument '%s'" % (cls.__name__, kwarg))
+    502         super().__init__()
+    503         post_init.send(sender=cls, instance=self)
+
+TypeError: Dojo() got an unexpected keyword argument 'first_name'
+
+In [13]: Ninja.objects.create(first_name = "Aaron", last_name = "Fennig", dojo = Dojo.objects.get(id =
+    ...: 2))
+Out[13]: <Ninja: Ninja object (1)>
+
+In [14]: Ninja.objects.create(first_name = "Bart", last_name = "Simpson", dojo = Dojo.objects.get(id =
+    ...: 2))
+Out[14]: <Ninja: Ninja object (2)>
+
+In [15]: Ninja.objects.create(first_name = "Homer", last_name = "Simpson", dojo = Dojo.objects.get(id =
+    ...:  2))
+Out[15]: <Ninja: Ninja object (3)>
+
+In [16]: Ninja.objects.create(first_name = "Eric", last_name = "Cartman", dojo = Dojo.objects.get(id =
+    ...: 3))
+Out[16]: <Ninja: Ninja object (4)>
+
+In [17]: Ninja.objects.create(first_name = "Stan", last_name = "Marsh", dojo = Dojo.objects.get(id = 3)
+    ...: )
+Out[17]: <Ninja: Ninja object (5)>
+
+In [18]: Ninja.objects.create(first_name = "Ike", last_name = "Bravlaski", dojo = Dojo.objects.get(id =
+    ...:  3))
+Out[18]: <Ninja: Ninja object (6)>
+
+In [19]: Ninja.objects.create(first_name = "Jason", last_name = "Bourne", dojo = Dojo.objects.get(id =
+    ...: 4))
+Out[19]: <Ninja: Ninja object (7)>
+
+In [20]: Ninja.objects.create(first_name = "James", last_name = "Bond", dojo = Dojo.objects.get(id = 4)
+    ...: )
+Out[20]: <Ninja: Ninja object (8)>
+
+In [21]: Ninja.objects.create(first_name = "Dwight", last_name = "Schrute", dojo = Dojo.objects.get(id
+    ...: = 4))
+Out[21]: <Ninja: Ninja object (9)>
+
+In [22]: dojo_one = Dojo.objects.get(id=2)
+
+In [23]: for each in dojo_one:
+    ...:     print(each.first_name, each.last_name)
+    ...:
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-23-2d95d585b418> in <module>
+----> 1 for each in dojo_one:
+      2     print(each.first_name, each.last_name)
+      3
+
+TypeError: 'Dojo' object is not iterable
+
+In [24]: print(dojo_one)
+Dojo object (2)
+
+In [25]: print(dojo_one.__dict__)
+{'_state': <django.db.models.base.ModelState object at 0x0000020F3AA02AC8>, 'id': 2, 'name': 'Burbank', 'city': 'Los Angeles', 'state': 'CA'}
+
+In [26]: ninja_one = Ninja.objects.get(dojo = 2)
+---------------------------------------------------------------------------
+MultipleObjectsReturned                   Traceback (most recent call last)
+<ipython-input-26-a1850b2c4975> in <module>
+----> 1 ninja_one = Ninja.objects.get(dojo = 2)
+
+~\.virtualenvs\dojos_and_ninjas-aGlk5c-f\lib\site-packages\django\db\models\manager.py in manager_method(self, *args, **kwargs)
+     80         def create_method(name, method):
+     81             def manager_method(self, *args, **kwargs):
+---> 82                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     83             manager_method.__name__ = method.__name__
+     84             manager_method.__doc__ = method.__doc__
+
+~\.virtualenvs\dojos_and_ninjas-aGlk5c-f\lib\site-packages\django\db\models\query.py in get(self, *args, **kwargs)
+    410         raise self.model.MultipleObjectsReturned(
+    411             "get() returned more than one %s -- it returned %s!" %
+--> 412             (self.model._meta.object_name, num)
+    413         )
+    414
+
+MultipleObjectsReturned: get() returned more than one Ninja -- it returned 3!
+
+In [27]: ninja_one = Ninja.objects.get(dojo = 2.all())
+  File "<ipython-input-27-71efc1c1b90e>", line 1
+    ninja_one = Ninja.objects.get(dojo = 2.all())
+                                             ^
+SyntaxError: invalid syntax
+
+
+In [28]: ninja_one = Ninja.objects.get(dojo = 2).all()
+---------------------------------------------------------------------------
+MultipleObjectsReturned                   Traceback (most recent call last)
+<ipython-input-28-822bfe95a444> in <module>
+----> 1 ninja_one = Ninja.objects.get(dojo = 2).all()
+
+~\.virtualenvs\dojos_and_ninjas-aGlk5c-f\lib\site-packages\django\db\models\manager.py in manager_method(self, *args, **kwargs)
+     80         def create_method(name, method):
+     81             def manager_method(self, *args, **kwargs):
+---> 82                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     83             manager_method.__name__ = method.__name__
+     84             manager_method.__doc__ = method.__doc__
+
+~\.virtualenvs\dojos_and_ninjas-aGlk5c-f\lib\site-packages\django\db\models\query.py in get(self, *args, **kwargs)
+    410         raise self.model.MultipleObjectsReturned(
+    411             "get() returned more than one %s -- it returned %s!" %
+--> 412             (self.model._meta.object_name, num)
+    413         )
+    414
+
+MultipleObjectsReturned: get() returned more than one Ninja -- it returned 3!
+
+In [29]: for each in Ninja.objects.get(dojo = 2):
+    ...:     print(each)
+    ...:
+---------------------------------------------------------------------------
+MultipleObjectsReturned                   Traceback (most recent call last)
+<ipython-input-29-ff7bfc6a9810> in <module>
+----> 1 for each in Ninja.objects.get(dojo = 2):
+      2     print(each)
+      3
+
+~\.virtualenvs\dojos_and_ninjas-aGlk5c-f\lib\site-packages\django\db\models\manager.py in manager_method(self, *args, **kwargs)
+     80         def create_method(name, method):
+     81             def manager_method(self, *args, **kwargs):
+---> 82                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     83             manager_method.__name__ = method.__name__
+     84             manager_method.__doc__ = method.__doc__
+
+~\.virtualenvs\dojos_and_ninjas-aGlk5c-f\lib\site-packages\django\db\models\query.py in get(self, *args, **kwargs)
+    410         raise self.model.MultipleObjectsReturned(
+    411             "get() returned more than one %s -- it returned %s!" %
+--> 412             (self.model._meta.object_name, num)
+    413         )
+    414
+
+MultipleObjectsReturned: get() returned more than one Ninja -- it returned 3!
+
+In [30]: ninjas = Ninja.objects.filter(dojo = Dojo.objects.get(id=2))
+
+In [31]: for each in ninjas:
+    ...:     print(each)
+    ...:
+Ninja object (1)
+Ninja object (2)
+Ninja object (3)
+
+In [32]: for each in ninjas:
+    ...:     print(each.__dict__)
+    ...:
+    ...:
+{'_state': <django.db.models.base.ModelState object at 0x0000020F3A871A20>, 'id': 1, 'dojo_id': 2, 'first_name': 'Aaron', 'last_name': 'Fennig'}
+{'_state': <django.db.models.base.ModelState object at 0x0000020F3A8716D8>, 'id': 2, 'dojo_id': 2, 'first_name': 'Bart', 'last_name': 'Simpson'}
+{'_state': <django.db.models.base.ModelState object at 0x0000020F3A871048>, 'id': 3, 'dojo_id': 2, 'first_name': 'Homer', 'last_name': 'Simpson'}
+
+In [33]: dojo3 = Ninja.objects.filter(dojo = Dojo.objects.get(id = 4))
+
+In [34]: for each in dojo3:
+    ...:     print(each.__dict__)
+    ...:
+{'_state': <django.db.models.base.ModelState object at 0x0000020F3AA027B8>, 'id': 7, 'dojo_id': 4, 'first_name': 'Jason', 'last_name': 'Bourne'}
+{'_state': <django.db.models.base.ModelState object at 0x0000020F3AA02630>, 'id': 8, 'dojo_id': 4, 'first_name': 'James', 'last_name': 'Bond'}
+{'_state': <django.db.models.base.ModelState object at 0x0000020F3AA02B38>, 'id': 9, 'dojo_id': 4, 'first_name': 'Dwight', 'last_name': 'Schrute'}
+
+In [35]: Ninja.last().get()
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-35-393304226a10> in <module>
+----> 1 Ninja.last().get()
+
+AttributeError: type object 'Ninja' has no attribute 'last'
+
+In [36]: Ninja.objects.last().__dict__
+Out[36]:
+{'_state': <django.db.models.base.ModelState at 0x20f3a992860>,
+ 'id': 9,
+ 'dojo_id': 4,
+ 'first_name': 'Dwight',
+ 'last_name': 'Schrute'}
+
+In [37]: Ninja.objects.last().dojo_id
+Out[37]: 4
+
+In [38]: ^Z
+  File "<ipython-input-38-2da6f45ca5db>", line 1
+    →
+    ^
+SyntaxError: invalid syntax
+
+
+In [39]:
+
+In [39]: ^Z
+  File "<ipython-input-39-2da6f45ca5db>", line 1
+    →
+    ^
+SyntaxError: invalid syntax
+
+
+In [40]: ^Z
+  File "<ipython-input-40-2da6f45ca5db>", line 1
+    →
+    ^
+SyntaxError: invalid syntax
+
+
+In [41]: exit
+
+(dojos_and_ninjas-aGlk5c-f) C:\Users\Aaron\ContinuingEducation\LearningPlatform\python_django\django\django_orm\dojos_and_ninjas\dojo_ninjas_proj>python manage.py makemigrations
+Migrations for 'dojo_ninjas_app':
+  dojo_ninjas_app\migrations\0002_dojo_description.py
+    - Add field description to dojo
+
+(dojos_and_ninjas-aGlk5c-f) C:\Users\Aaron\ContinuingEducation\LearningPlatform\python_django\django\django_orm\dojos_and_ninjas\dojo_ninjas_proj>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, dojo_ninjas_app, sessions
+Running migrations:
+  Applying dojo_ninjas_app.0002_dojo_description... OK
+
+(dojos_and_ninjas-aGlk5c-f) C:\Users\Aaron\ContinuingEducation\LearningPlatform\python_django\django\django_orm\dojos_and_ninjas\dojo_ninjas_proj>python manage.py runserver
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+June 07, 2021 - 15:15:34
+Django version 2.2.4, using settings 'dojo_ninjas_proj.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+(dojos_and_ninjas-aGlk5c-f) C:\Users\Aaron\ContinuingEducation\LearningPlatform\python_django\django\django_orm\dojos_and_ninjas\dojo_ninjas_proj>python manage.py shell
+Python 3.6.4 (v3.6.4:d48eceb, Dec 19 2017, 06:54:40) [MSC v.1900 64 bit (AMD64)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.16.1 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: In [3]: Dojo.objects.create(name = "Ptown", city = "Portland", state = "IN", description = "We
+   ...: have a super walmart!!!")
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-1-017933694ef6> in <module>
+----> 1 Dojo.objects.create(name = "Ptown", city = "Portland", state = "IN", description = "We have a super walmart!!!")
+
+NameError: name 'Dojo' is not defined
+
+In [2]: In [3]: Dojo.objects.create(name = "Ptown", city = "Portland", state = "IN", description = "We
+   ...: have a super walmart!!!")
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-2-017933694ef6> in <module>
+----> 1 Dojo.objects.create(name = "Ptown", city = "Portland", state = "IN", description = "We have a super walmart!!!")
+
+NameError: name 'Dojo' is not defined
+
+In [3]: In [3]: Dojo.objects.create(name = "Ptown", city = "Portland", state = "IN", description = "We
+   ...: have a super walmartIn [3]: Dojo.objects.create(name = "San Jose", city = "SanJose", state = "T
+   ...: X" )
+   ...: Out[3]: <Dojo: Dojo object (1)>!!!")
+  File "<ipython-input-3-89ae7207e9e6>", line 1
+    Dojo.objects.create(name = "Ptown", city = "Portland", state = "IN", description = "We have a super walmartIn [3]: Dojo.objects.create(name = "San Jose", city = "SanJose", state = "TX" )
+                                                                                                                                                     ^
+SyntaxError: invalid syntax
+
+
+In [4]: Dojo.objects.create(name = "Ptown", city = "Portland", state = "IN", description = "We have a s
+   ...: uper walmart!!!")
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-4-017933694ef6> in <module>
+----> 1 Dojo.objects.create(name = "Ptown", city = "Portland", state = "IN", description = "We have a super walmart!!!")
+
+NameError: name 'Dojo' is not defined
+
+In [5]: Dojo.objects.create(name = "Ptown", city = "Portland", state = "IN", description = "We have a s
+   ...: uper walmart!!!")
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-5-017933694ef6> in <module>
+----> 1 Dojo.objects.create(name = "Ptown", city = "Portland", state = "IN", description = "We have a super walmart!!!")
+
+NameError: name 'Dojo' is not defined
+
+In [6]: from dojos_ninjas_app import *
+---------------------------------------------------------------------------
+ModuleNotFoundError                       Traceback (most recent call last)
+<ipython-input-6-e1ed26afe1ee> in <module>
+----> 1 from dojos_ninjas_app import *
+
+ModuleNotFoundError: No module named 'dojos_ninjas_app'
+
+In [7]: from dojo_ninjas_app import *
+
+In [8]: Dojo.objects.create(name = "Ptown", city = "Portland", state = "IN", description = "We have a s
+   ...: uper walmart!!!")
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-8-017933694ef6> in <module>
+----> 1 Dojo.objects.create(name = "Ptown", city = "Portland", state = "IN", description = "We have a super walmart!!!")
+
+NameError: name 'Dojo' is not defined
+
+In [9]: from dojo_ninjas_app.models import *
+
+In [10]: Dojo.objects.create(name = "Ptown", city = "Portland", state = "IN", description = "We have a
+    ...: super walmart!!!")
+Out[10]: <Dojo: Dojo object (5)>
+
+In [11]:

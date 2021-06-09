@@ -1,0 +1,18 @@
+.wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.list{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.chart{
+    display:flex;
+    flex-direction: wrap;
+    width: 100%;
+}
+.tabl{
+    border: 2px solid black;
+}

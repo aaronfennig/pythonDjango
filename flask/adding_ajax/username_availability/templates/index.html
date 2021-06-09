@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'style.css')}}">
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{url_for('static', filename = 'script.js')}}" async></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <fieldset style = "border: 2px solid black;">
+            <legend style = "border: 2px solid crimson;">JQuery Registration</legend>
+            <h1 class = "xyz">Add a New User</h1>
+            <form action="/postnewuser" method="POST" id = "regForm">
+                <label for="firstNameInput">First Name</label>
+                <input type="text" id="form-control" id="firstNameInput" name = "firstNameInput"><br>
+                <label for="lastNameInput">Last Name</label>
+                <input type="text" id="lastNameInput" name = "lastNameInput">
+                <div id="userNameMsg"></div><br>
+                <label for="emailInput">Email</label>
+                <input type="text" id="emailInput" name = "emailInput"><br>
+                <input type="submit" value = "Create User">
+            </form><br>
+            <h4>Search for a friend</h4>
+            <form action = "/usersearch", method = "GET" id = "searchForm">
+                <input type="text" name="nameInput" id="nameInput">
+            </form>
+            <div id = "suggestions"></div>
+        </fieldset>
+    </div>
+
+</body>
+
+</html>
